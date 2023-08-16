@@ -25,6 +25,9 @@ export default function UserPage() {
           username: jsonResponse.username,
           balance: jsonResponse.balance,
         });
+        if (response.status !== 200) {
+          setError(true);
+        }
       } catch (e) {
         console.log(e);
         setError(true);
@@ -42,8 +45,7 @@ export default function UserPage() {
       </div>
     );
   }
-
-  if (error || !storedData?.userId) {
+  if (error) {
     return (
       <div className="text-center w-full mt-14">
         <h3>404</h3>
